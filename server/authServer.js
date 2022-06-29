@@ -39,6 +39,8 @@ app.use(cors())
 
 app.use("/api/auth", authRouter);
 
-app.listen(process.env.AUTH_PORT, () =>
-    console.log(`AuthServer started on port ${process.env.AUTH_PORT}`)
+app.listen(process.env.AUTH_PORT, () =>{
+        console.log(`AuthServer started on mongodb+srv://nthoang74:0000@database.wvklh.mongodb.net`)
+        //console.log(`AuthServer started on port ${process.env.PORT}`);
+    }
 );

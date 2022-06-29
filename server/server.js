@@ -55,6 +55,8 @@ app.use("/api/games", gameRouter);
 app.use("/api/playerResults", playerResultRouter);
 app.use("/api/leaderboard", leaderboardRouter)
 
-app.listen(process.env.PORT, () =>
-    console.log(`Server started on port ${process.env.PORT}`)
+app.listen(process.env.PORT, () =>{
+    //console.log(`Server started on port ${process.env.PORT}`);
+    console.log(`Server started on mongodb+srv://nthoang74:0000@database.wvklh.mongodb.net`);
+    }
 );
