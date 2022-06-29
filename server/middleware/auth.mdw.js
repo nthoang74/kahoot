@@ -1,6 +1,10 @@
 import "dotenv/config"
 import jwt from "jsonwebtoken";
 
+const accessTokenLife = process.env.ACCESS_TOKEN_LIFE;
+const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
+
+
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"]
     const token = authHeader && authHeader.split(" ")[1]
@@ -24,7 +28,7 @@ const regenerateAccessToken = (req, res, next) => {
             console.log(error)
             return res.sendStatus(403)
         }
-        const accessToken = generateAccessToken({
+        const accessToken = generateAccessToken ({
             userName: user.userName,
             id: user._id,
         })
