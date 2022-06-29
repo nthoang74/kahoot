@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Pagination, PaginationItem } from "@material-ui/lab"
 import { Link } from "react-router-dom"
 
-import { getPublicQuizes } from "../../actions/quiz"
+import { getPublicQuizzes } from "../../actions/quiz"
 import useStyles from "./styles"
 
 const Paginate = ({ page }) => {
@@ -14,7 +14,7 @@ const Paginate = ({ page }) => {
 
     useEffect(() => {
         if (page) {
-            dispatch(getPublicQuizes(page))
+            dispatch(getPublicQuizzes(page))
         }
     }, [dispatch, page])
 
@@ -29,7 +29,7 @@ const Paginate = ({ page }) => {
                 <PaginationItem
                     {...item}
                     component={Link}
-                    to={`/quizes?page=${item.page}`}
+                    to={`/quizzes?page=${item.page}`}
                 />
             )}
         />

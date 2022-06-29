@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styles from "./quizCreator.module.css"
-import QuestionListItem from "./QuestionListItem/QuestionListItem"
+import QuestionListItem from "./QuestionList/QuestionList"
 import AnswerInput from "./AnswerInput/AnswerInput"
 import triangle from "../../assets/triangle.svg"
 import diamond from "../../assets/diamond.svg"
