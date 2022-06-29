@@ -1,36 +1,36 @@
 import * as api from "../api"
 import {
-    FETCH_ALL_QUIZES,
-    FETCH_PUBLIC_QUIZES,
-    FETCH_TEACHER_QUIZES,
+    FETCH_ALL_QUIZZES,
+    FETCH_PUBLIC_QUIZZES,
+    FETCH_TEACHER_QUIZZES,
     CREATE_QUIZ,
     UPDATE_QUIZ,
     LIKE_QUIZ,
     DELETE_QUIZ,
     FETCH_QUIZ,
-    FETCH_QUIZES_BY_SEARCH,
+    FETCH_QUIZZES_BY_SEARCH,
     START_LOADING,
     END_LOADING,
     COMMENT_QUIZ
 } from "../constants/actionTypes"
 
-export const getQuizes = () => async (dispatch) => {
+export const getQuizzes = () => async (dispatch) => {
     try {
-        const { data } = await api.fetchQuizes()
-        dispatch({ type: FETCH_ALL_QUIZES, payload: data })
+        const { data } = await api.fetchQuizzes()
+        dispatch({ type: FETCH_ALL_QUIZZES, payload: data })
     } catch (error) {
         console.log(error)
     }
 }
 
-export const getPublicQuizes = (page) => async (dispatch) => {
+export const getPublicQuizzes = (page) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING })
         const {
             data: { data, currentPage, numberOfPages },
-        } = await api.fetchPublicQuizes(page)
+        } = await api.fetchPublicQuizzes(page)
         dispatch({
-            type: FETCH_PUBLIC_QUIZES,
+            type: FETCH_PUBLIC_QUIZZES,
             payload: { data, currentPage, numberOfPages },
         })
         dispatch({ type: END_LOADING })
@@ -39,22 +39,22 @@ export const getPublicQuizes = (page) => async (dispatch) => {
     }
 }
 
-export const getQuizesBySearch = (searchQuery) => async (dispatch) => {
+export const getQuizzesBySearch = (searchQuery) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING })
-        const { data } = await api.fetchQuizesBySearch(searchQuery)
-        dispatch({ type: FETCH_QUIZES_BY_SEARCH, payload: data })
+        const { data } = await api.fetchQuizzesBySearch(searchQuery)
+        dispatch({ type: FETCH_QUIZZES_BY_SEARCH, payload: data })
         dispatch({ type: END_LOADING })
     } catch (error) {
         console.log(error)
     }
 }
 
-export const getTeacherQuizes = (id) => async (dispatch) => {
+export const getTeacherQuizzes = (id) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING })
-        const { data } = await api.fetchTeacherQuizes(id)
-        dispatch({ type: FETCH_TEACHER_QUIZES, payload: data })
+        const { data } = await api.fetchTeacherQuizzes(id)
+        dispatch({ type: FETCH_TEACHER_QUIZZES, payload: data })
         dispatch({ type: END_LOADING })
     } catch (error) {
         console.log(error)
@@ -64,7 +64,7 @@ export const getTeacherQuizes = (id) => async (dispatch) => {
 export const getQuestions = () => async (dispatch) => {
     try {
         const { data } = await api.fetchQuestions()
-        dispatch({ type: FETCH_ALL_QUIZES, payload: data })
+        dispatch({ type: FETCH_ALL_QUIZZES, payload: data })
     } catch (error) {
         console.log(error)
     }
@@ -74,7 +74,7 @@ export const createQuiz = (quiz, history) => async (dispatch) => {
     try {
         const { data } = await api.createQuiz(quiz)
         dispatch({ type: CREATE_QUIZ, payload: data })
-        history.push(`/myquizes/${data._id}`)
+        history.push(`/myquizzes/${data._id}`)
     } catch (error) {
         console.log(error)
     }
@@ -89,15 +89,6 @@ export const deleteQuiz = (id) => async (dispatch) => {
     }
 }
 
-//do poprawy
-// export const createQuestion = (quizId, question) => async (dispatch) => {
-//   try {
-//     const { data } = await api.createQuiz(quizId, question);
-//     dispatch({ type: CREATE_QUIZ, payload: data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 export const updateQuiz = (id, quiz) => async (dispatch) => {
     try {
@@ -108,14 +99,6 @@ export const updateQuiz = (id, quiz) => async (dispatch) => {
     }
 }
 
-// export const updateQuestion = (quizId, questionId, user) => async (dispatch) => {
-//   try {
-//     const { data } = await api.updateUser(quizId, questionId, user);
-//     dispatch({ type: UPDATE_QUIZ, payload: data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 export const likeQuiz = (quizId) => async (dispatch) => {
     try {

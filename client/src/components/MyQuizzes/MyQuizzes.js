@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import MyQuiz from "./MyQuiz/MyQuiz"
 import { useDispatch, useSelector } from "react-redux"
-import { getTeacherQuizes, createQuiz } from "../../actions/quiz"
-import styles from "./myQuizes.module.css"
+import { getTeacherQuizzes, createQuiz } from "../../actions/quiz"
+import styles from "./myQuizzes.module.css"
 import { useHistory } from "react-router-dom"
 
-function MyQuizes() {
+function MyQuizzes() {
     const user = JSON.parse(localStorage.getItem("profile"))
     const dispatch = useDispatch()
     const history = useHistory()
@@ -24,10 +24,10 @@ function MyQuizes() {
     const [isQuizPublic, setIsQuizPublic] = useState(true)
 
     useEffect(() => {
-        dispatch(getTeacherQuizes(user.result._id))
+        dispatch(getTeacherQuizzes(user.result._id))
     }, [dispatch])
 
-    const { quizes } = useSelector((state) => state.quiz)
+    const { quizzes } = useSelector((state) => state.quiz)
 
     const handleQuizSubmit = () => {
         dispatch(createQuiz(quizData, history))
@@ -38,7 +38,7 @@ function MyQuizes() {
     }
 
     return (
-        <div className={styles["quizes-list"]}>
+        <div className={styles["quizzes-list"]}>
             <div className={styles["quiz-settings"]}>
                 <h2>{isLanguageEnglish ? "Create new quiz" : "Stwórz nowy quiz"}</h2>
                 <div className={styles["quiz-form"]}>
@@ -96,11 +96,11 @@ function MyQuizes() {
                     </button>
                 </div>
             </div>
-            {quizes.map((quiz) => (
+            {quizzes.map((quiz) => (
                 <MyQuiz key={quiz._id} quiz={quiz} />
             ))}
         </div>
     )
 }
 
-export default MyQuizes
+export default MyQuizzes
