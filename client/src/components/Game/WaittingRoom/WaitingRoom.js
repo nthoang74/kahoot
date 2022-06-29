@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import styles from "./waittingRoom.module.css"
 
-function WaittingRoom({ pin, socket }) {
+function WaitingRoom({ pin, socket }) {
     const [playerList, setPlayerList] = useState([])
     const isLanguageEnglish = useSelector((state) => state.language.isEnglish)
 
@@ -50,4 +50,4 @@ function WaittingRoom({ pin, socket }) {
     )
 }
 
-export default WaittingRoom
+export default WaitingRoom

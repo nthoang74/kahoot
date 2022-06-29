@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import WaittingRoom from "../WaittingRoom/WaittingRoom.js"
+import WaitingRoom from "../WaittingRoom/WaitingRoom.js"
 import { useDispatch, useSelector } from "react-redux"
 import { getGame } from "../../../actions/game"
 import { getQuiz } from "../../../actions/quiz"
@@ -166,7 +166,7 @@ function HostScreen() {
         <div className={styles.page}>
             {!isGameStarted && (
                 <div className={styles.lobby}>
-                    <WaittingRoom pin={game?.pin} socket={socket} />
+                    <WaitingRoom pin={game?.pin} socket={socket} />
                     <button onClick={startGame}>
                         {isLanguageEnglish ? "Start a game" : "Rozpocznij grę"}
                     </button>

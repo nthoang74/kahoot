@@ -1,8 +1,5 @@
 import { instrument } from "@socket.io/admin-ui";
-
-
 import { Server } from "socket.io";
-
 
 const io = new Server(3001,{
     cors: {
@@ -28,6 +25,8 @@ io.on("connection", (socket) => {
         console.log("Socket " + socket.id + " was disconnected")
         console.log(reason)
     })
+
+    // Creat new game
     socket.on("init-game", (newGame, newLeaderboard) => {
         game = JSON.parse(JSON.stringify(newGame))
         leaderboard = JSON.parse(JSON.stringify(newLeaderboard))
@@ -38,6 +37,7 @@ io.on("connection", (socket) => {
         )
     })
 
+    // Add phayer into room
     socket.on("add-player", (user, socketId, pin, cb) => {
         if (game.pin === pin) {
             addPlayer(user.userName, socketId)
@@ -59,6 +59,7 @@ io.on("connection", (socket) => {
         }
     })
 
+    // Start game
     socket.on("start-game", (newQuiz) => {
         let quiz = JSON.parse(JSON.stringify(newQuiz))
         console.log("Move players to game")
@@ -66,10 +67,12 @@ io.on("connection", (socket) => {
         socket.to(game.pin).emit("move-to-game-page", game._id)
     })
 
+    //
     socket.on("question-preview", (cb) => {
         cb()
         socket.to(game.pin).emit("host-start-preview")
     })
+
 
     socket.on("start-question-timer", (time, question, cb) => {
         // console.log(question)
@@ -77,6 +80,7 @@ io.on("connection", (socket) => {
         socket.to(game.pin).emit("host-start-question-timer", time, question)
         cb()
     })
+
 
     socket.on("send-answer-to-host", (data, score) => {
         let player = getPlayer(socket.id)
