@@ -1,23 +1,14 @@
 import { instrument } from "@socket.io/admin-ui";
 
-import { createServer } from "http";
+
 import { Server } from "socket.io";
 
-const httpServer = createServer();
-const io = new Server(httpServer, {
+
+const io = new Server(3001,{
     cors: {
         origin: ["http://localhost:3000", "https://admin.socket.io/#/sockets"],
     },
-});
-
-httpServer.listen(3000);
-
-// const io = require('socket.io') (3001, {
-//     cors: {
-//         origin: ["http://localhost:3000", "https://admin.socket.io/#/sockets"],
-//     },
-// })
-
+} );
 
 let game;
 let leaderboard;
@@ -41,7 +32,7 @@ io.on("connection", (socket) => {
         game = JSON.parse(JSON.stringify(newGame))
         leaderboard = JSON.parse(JSON.stringify(newLeaderboard))
         socket.join(game.pin)
-        hostId = socket.id
+        let hostId = socket.id
         console.log(
             "Host with id " + socket.id + " started game and joined room: " + game.pin
         )
@@ -69,7 +60,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on("start-game", (newQuiz) => {
-        quiz = JSON.parse(JSON.stringify(newQuiz))
+        let quiz = JSON.parse(JSON.stringify(newQuiz))
         console.log("Move players to game")
         console.log(game.pin)
         socket.to(game.pin).emit("move-to-game-page", game._id)
