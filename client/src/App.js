@@ -32,14 +32,14 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/auth" exact component={() => (user === null ? <Auth /> : <Redirect to="/" />)} />
-          <Route path="/quizes" exact component={Quizes} />
-          <Route path="/quizes/search" exact component={Quizes} />
-          <Route path="/quizes/:id" exact component={QuizDetails} />
-          <Route path="/myquizes/:id" exact component={QuizCreator} />
-          <Route path="/games/joingame" exact component={JoinGame} />
+          <Route path="/quizzes" exact component={Quizzes} />
+          <Route path="/quizzes/search" exact component={Quizzes} />
+          <Route path="/quizzes/:id" exact component={QuizDetails} />
+          <Route path="/my-quizzes/:id" exact component={QuizCreator} />
+          <Route path="/games/join-game" exact component={JoinGame} />
           <Route path="/games/host/:id" exact component={HostScreen} />
           <Route path="/games/player/:id" exact component={PlayerScreen} />
-          <Route path="/myquizes" exact component={MyQuizes} />
+          <Route path="/my-quizzes" exact component={MyQuizzes} />
         </Switch>
         <Footer />
       </BrowserRouter>

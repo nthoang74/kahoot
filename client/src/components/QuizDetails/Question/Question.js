@@ -1,5 +1,5 @@
 import React from "react"
-import QuestionListItem from "../../QuizCreator/QuestionListItem/QuestionListItem"
+import QuestionListItem from "../../QuizCreator/QuestionList/QuestionList"
 import styles from "./question.module.css"
 
 function Question({ question }) {
