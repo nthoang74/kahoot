@@ -23,7 +23,7 @@ function Home() {
                             </h2>
                             <p className={styles["banner-description"]}>
                                 {isLanguageVietnamese
-                                    ? "Kahoot! cung cấp quá trình học tập hấp dẫn cho hàng tỷ người."
+                                    ? "Kahooot! cung cấp quá trình học tập hấp dẫn cho hàng tỷ người."
                                     : "Quizzly delivers engaging learning to billions"}
                             </p>
                             <button className={styles["banner-button"]}>
