@@ -5,7 +5,7 @@ import quiz from "./quiz";
 import language from "./language"
 import games from "./games"
 import playerResults from "./playerResults";
-import leaderboards from "./leaderboards";
+import leaderboards from "./leaderBoards";
 import socket from "./socket";
 
 export default combineReducers({
