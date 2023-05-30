@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import WaitingRoom from "../WaitingRoom/WaitingRoom"
+import WaitingRoom from "../WaittingRoom/WaitingRoom.js"
 import { useDispatch, useSelector } from "react-redux"
 import { getGame } from "../../../actions/game"
 import { getQuiz } from "../../../actions/quiz"

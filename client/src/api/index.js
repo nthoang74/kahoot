@@ -17,30 +17,30 @@ export const updateUser = (id, updatedUser) =>
     API.patch(`/users/${id}`, updatedUser)
 export const deleteUser = (id) => API.delete(`/users/${id}`)
 
-export const fetchQuizes = () => API.get("/quizes")
-export const fetchPublicQuizes = (page) =>
-    API.get(`/quizes/public?page=${page}`)
-export const fetchQuizesBySearch = (searchQuery) =>
+export const fetchQuizzes = () => API.get("/quizzes")
+export const fetchPublicQuizzes = (page) =>
+    API.get(`/quizzes/public?page=${page}`)
+export const fetchQuizzesBySearch = (searchQuery) =>
     API.get(
-        `/quizes/search?searchQuery=${searchQuery.search || "none"}&tags=${
+        `/quizzes/search?searchQuery=${searchQuery.search || "none"}&tags=${
             searchQuery.tags
         }`
     )
-export const fetchTeacherQuizes = (teacherId) =>
-    API.get(`/quizes/teacher/${teacherId}`)
-export const fetchQuestions = (quizId) => API.get(`/quizes/${quizId}`)
-export const createQuiz = (newQuiz) => API.post("/quizes", newQuiz)
+export const fetchTeacherQuizzes = (teacherId) =>
+    API.get(`/quizzes/teacher/${teacherId}`)
+export const fetchQuestions = (quizId) => API.get(`/quizzes/${quizId}`)
+export const createQuiz = (newQuiz) => API.post("/quizzes", newQuiz)
 export const createQuestion = (quizId, newQuestion) =>
-    API.post(`/quizes/${quizId}/questions`, newQuestion)
+    API.post(`/quizzes/${quizId}/questions`, newQuestion)
 export const updateQuestion = (quizId, questionId, updatedQuestion) =>
-    API.patch(`/quizes/${quizId}/questions/${questionId}`, updatedQuestion)
+    API.patch(`/quizzes/${quizId}/questions/${questionId}`, updatedQuestion)
 export const updateQuiz = (id, updatedQuiz) =>
-    API.patch(`/quizes/${id}`, updatedQuiz)
-export const deleteQuiz = (id) => API.delete(`/quizes/${id}`)
-export const likeQuiz = (id) => API.patch(`/quizes/${id}/likeQuiz`)
+    API.patch(`/quizzes/${id}`, updatedQuiz)
+export const deleteQuiz = (id) => API.delete(`/quizzes/${id}`)
+export const likeQuiz = (id) => API.patch(`/quizzes/${id}/likeQuiz`)
 export const commentQuiz = (comment, id) =>
-    API.post(`/quizes/${id}/commentQuiz`, { comment })
-export const fetchQuiz = (id) => API.get(`/quizes/${id}`, id)
+    API.post(`/quizzes/${id}/commentQuiz`, { comment })
+export const fetchQuiz = (id) => API.get(`/quizzes/${id}`, id)
 
 export const createGame = (newGame) => API.post("/games", newGame)
 export const fetchGame = (id) => API.get(`/games/${id}`, id)

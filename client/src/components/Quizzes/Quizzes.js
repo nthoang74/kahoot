@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Quiz from "./Quiz/Quiz"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useLocation } from "react-router-dom"
-import styles from "./quizes.module.css"
+import styles from "./quizzes.module.css"
 import ChipInput from "material-ui-chip-input"
 import {
     AppBar,
@@ -12,18 +12,18 @@ import {
     CircularProgress,
 } from "@material-ui/core"
 import useStyles from "./styles"
-import { getQuizesBySearch } from "../../actions/quiz"
+import { getQuizzesBySearch } from "../../actions/quiz"
 import Pagination from "../Pagination/Pagination"
 
 function useQuery() {
     return new URLSearchParams(useLocation().search)
 }
 
-function Quizes() {
+function Quizzes() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const history = useHistory()
-    const { quizes, isLoading } = useSelector((state) => state.quiz)
+    const { quizzes, isLoading } = useSelector((state) => state.quiz)
     const isLanguageEnglish = useSelector((state) => state.language.isEnglish)
 
     const query = useQuery()
@@ -36,12 +36,12 @@ function Quizes() {
     const searchPost = () => {
         if (search.trim() !== "" || tags.length !== 0) {
             console.log(search.trim())
-            dispatch(getQuizesBySearch({ search, tags: tags.join(",") }))
+            dispatch(getQuizzesBySearch({ search, tags: tags.join(",") }))
             history.push(
-                `/quizes/search?searchQuery=${search || "none"}&tags=${tags.join(",")}`
+                `/quizzes/search?searchQuery=${search || "none"}&tags=${tags.join(",")}`
             )
         } else {
-            history.push("/quizes")
+            history.push("/quizzes")
         }
     }
 
@@ -57,7 +57,7 @@ function Quizes() {
         setTags(tags.filter((tag) => tag !== chipToDelete))
 
     return (
-        <div className={styles["quizes-list"]}>
+        <div className={styles["quizzes-list"]}>
             <AppBar
                 className={classes.appBarSearch}
                 position="static"
@@ -69,7 +69,7 @@ function Quizes() {
                     variant="outlined"
                     label={
                         isLanguageEnglish
-                            ? "Search quizes by name"
+                            ? "Search quizzes by name"
                             : "Szukaj quizów po nazwie"
                     }
                     fullWidth
@@ -83,7 +83,7 @@ function Quizes() {
                     onDelete={(chip) => handleDeleteChip(chip)}
                     label={
                         isLanguageEnglish
-                            ? "Search quizes by tags"
+                            ? "Search quizzes by tags"
                             : "Szukaj quizów po kategoriach"
                     }
                     variant="outlined"
@@ -100,7 +100,7 @@ function Quizes() {
             {isLoading ? (
                 <CircularProgress />
             ) : (
-                quizes.map((quiz) => <Quiz key={quiz._id} quiz={quiz} />)
+                quizzes.map((quiz) => <Quiz key={quiz._id} quiz={quiz} />)
             )}
             {!searchQuery && !tags.length && (
                 <Paper className={classes.pagination} elevation={6}>
@@ -111,4 +111,4 @@ function Quizes() {
     )
 }
 
-export default Quizes
+export default Quizzes

@@ -8,14 +8,16 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import moment from "moment"
 import { useParams } from "react-router-dom"
-import Quiz from "../Quizes/Quiz/Quiz"
-import Question from "./Question/Question"
-import CommentSection from './CommentSection/CommentSection'
-import { getQuiz, getQuizesBySearch } from "../../actions/quiz"
+
+import Quiz from "../Quizzes/Quiz/Quiz.js"
+import Question from "./Question/Question.js"
+import CommentSection from './CommentSection/CommentSection.js'
+import { getQuiz, getQuizzesBySearch } from "../../actions/quiz.js"
+
 import useStyles from "./styles"
 
 const Post = () => {
-    const { quiz, quizes, isLoading } = useSelector((state) => state.quiz)
+    const { quiz, quizzes, isLoading } = useSelector((state) => state.quiz)
     const isLanguageEnglish = useSelector((state) => state.language.isEnglish)
     const dispatch = useDispatch()
     const classes = useStyles()
@@ -28,7 +30,7 @@ const Post = () => {
     useEffect(() => {
         if (quiz) {
             dispatch(
-                getQuizesBySearch({ search: "none", tags: quiz?.tags.join(",") })
+                getQuizzesBySearch({ search: "none", tags: quiz?.tags.join(",") })
             )
         }
     }, [quiz])
@@ -43,7 +45,7 @@ const Post = () => {
         )
     }
 
-    const recommendedQuizes = quizes.filter(({ _id }) => _id !== quiz._id)
+    const recommendedQuizzes = quizzes.filter(({ _id }) => _id !== quiz._id)
 
     return (
         <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
@@ -89,7 +91,7 @@ const Post = () => {
                 </div>
             )}
             <Divider />
-            {recommendedQuizes.length > 0 && (
+            {recommendedQuizzes.length > 0 && (
                 <div>
                     <Typography gutterBottom variant="h5">
                         {isLanguageEnglish
@@ -97,7 +99,7 @@ const Post = () => {
                             : "Możesz również polubić:"}
                     </Typography>
                     <Divider />
-                    {recommendedQuizes.map((quiz) => (
+                    {recommendedQuizzes.map((quiz) => (
                         <Quiz key={quiz._id} quiz={quiz} />
                     ))}
                 </div>

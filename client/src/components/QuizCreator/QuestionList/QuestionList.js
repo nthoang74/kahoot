@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./questionListItem.module.css"
+import styles from "./questionList.module.css"
 import defaultQuestionImage from "../../../assets/defaultQuestionImage.svg"
 
 function QuestionListItem({ number, type, name, time, image, onClick }) {
